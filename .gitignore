@@ -1,0 +1,13 @@
+homarr/
+jellyfn/
+prowlarr/
+qbit/
+radarr/
+sonarr/
+
+*.torrentrc
+*.torrent
+*.mkv
+
+# Ignore all files in the homarr directory
+homarr/*
