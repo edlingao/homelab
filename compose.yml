@@ -38,7 +38,7 @@ services:
   jellyfin:
     image: jellyfin/jellyfin
     container_name: jellyfin
-    user: 501:20
+    user: 1000:1000
     network_mode: 'host'
     ports:
       - 8096:8096
@@ -81,8 +81,8 @@ services:
     ports:
       - 7878:7878
     environment:
-      - PUID=501
-      - PGID=20
+      - PUID=1000
+      - PGID=1000
       - UMASK_SET=022
       - TZ=America/Mexico_City
     volumes:
@@ -101,8 +101,8 @@ services:
     ports:
       - 8989:8989
     environment:
-      - PUID=501
-      - PGID=20
+      - PUID=1000
+      - PGID=1000
       - TZ=America/Mexico_City
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -116,8 +116,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - PUID=501
-      - PGID=20
+      - PUID=1000
+      - PGID=1000
       - UMASK=002
       - TZ=America/Mexico_City
       - WEBUI_PORTS=8080/tcp,8080/udp
@@ -140,8 +140,8 @@ services:
     ports:
       - 9696:9696
     environment:
-      - PUID=501
-      - PGID=20
+      - PUID=1000
+      - PGID=1000
       - TZ=America/Mexico_City
     volumes:
       - /etc/localtime:/etc/localtime:ro
