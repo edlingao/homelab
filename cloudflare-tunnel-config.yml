@@ -1,0 +1,54 @@
+tunnel: YOUR_TUNNEL_ID
+credentials-file: /path/to/credentials.json
+
+ingress:
+  # Homarr Dashboard
+  - hostname: homarr.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: homarr.localhost
+
+  # Jellyfin Media Server
+  - hostname: jellyfin.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: jellyfin.localhost
+
+  # Jellyseerr Request Management
+  - hostname: jellyseerr.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: jellyseerr.localhost
+
+  # Radarr Movie Management
+  - hostname: radarr.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: radarr.localhost
+
+  # Sonarr TV Management
+  - hostname: sonarr.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: sonarr.localhost
+
+  # qBittorrent Torrent Client
+  - hostname: qbittorrent.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: qbittorrent.localhost
+
+  # Prowlarr Indexer Management
+  - hostname: prowlarr.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: prowlarr.localhost
+
+  # FlareSolverr Captcha Solver
+  - hostname: flaresolverr.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: flaresolverr.localhost
+
+  # Catch-all rule (must be last)
+  - service: http_status:404

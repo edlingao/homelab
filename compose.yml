@@ -51,7 +51,7 @@ services:
       - ./data:/data:Z
     restart: 'unless-stopped'
     environment:
-      - JELLYFIN_PublishedServerUrl=http://jellyfin.localhost
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.edlingao.com
     extra_hosts:
       - 'host.docker.internal:host-gateway'
 
