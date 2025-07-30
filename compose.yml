@@ -32,7 +32,6 @@ services:
       - ./homarr/appdata:/appdata
     environment:
       - SECRET_ENCRYPTION_KEY=563d5f14d8fc696d23a76e400dc9c3c2cfe5908f4d7a374195ed43a1721021dc
-      - BASE_URL=/homarr
     ports:
       - '7575:7575'
 
@@ -50,7 +49,7 @@ services:
       - ./data:/data:Z
     restart: 'unless-stopped'
     environment:
-      - JELLYFIN_PublishedServerUrl=http://localhost/jellyfin
+      - JELLYFIN_PublishedServerUrl=http://jellyfin.localhost
     extra_hosts:
       - 'host.docker.internal:host-gateway'
 
@@ -62,7 +61,6 @@ services:
       - LOG_LEVEL=debug
       - TZ=America/Mexico_City
       - PORT=5055
-      - JELLYSEERR_BASE_URL=/jellyseerr
     ports:
       - 5055:5055
     volumes:
@@ -87,7 +85,6 @@ services:
       - PGID=20
       - UMASK_SET=022
       - TZ=America/Mexico_City
-      - RADARR__URLBASE=/radarr
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./radarr/config:/config
@@ -107,7 +104,6 @@ services:
       - PUID=501
       - PGID=20
       - TZ=America/Mexico_City
-      - SONARR__URLBASE=/sonarr
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./sonarr:/config
@@ -126,8 +122,7 @@ services:
       - TZ=America/Mexico_City
       - WEBUI_PORTS=8080/tcp,8080/udp
       - LIBTORRENT=v1
-      - PASSWORD=example
-      - WEBUI_ROOT_PATH=/qbittorrent/
+      - PASSWORD=qbitDefaultPass123!
     volumes:
       - ./qbit:/config
       - ./config/qBittorrent.conf:/config/qBittorrent/qBittorrent.conf:ro
@@ -148,7 +143,6 @@ services:
       - PUID=501
       - PGID=20
       - TZ=America/Mexico_City
-      - PROWLARR__URLBASE=/prowlarr
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./prowlarr:/config
