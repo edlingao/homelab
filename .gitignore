@@ -4,6 +4,7 @@ prowlarr/
 qbit/
 radarr/
 sonarr/
+bazarr/
 
 *.torrentrc
 *.torrent
