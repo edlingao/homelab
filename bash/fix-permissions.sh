@@ -24,6 +24,6 @@ sudo chmod -R 755 ./prowlarr
 sudo chmod -R 755 ./data
 
 echo "Restarting containers..."
-docker-compose restart
+docker compose restart
 
 echo "Permissions fixed successfully!"
