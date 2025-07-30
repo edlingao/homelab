@@ -164,6 +164,7 @@ services:
   bazarr:
     container_name: bazarr
     image: ghcr.io/hotio/bazarr
+    network_mode: 'host'
     ports:
       - "6767:6767"
     environment:
