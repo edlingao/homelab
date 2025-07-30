@@ -4,9 +4,11 @@
 echo "Fixing permissions for media server containers..."
 
 # Fix Jellyfin permissions
-echo "Setting ownership for Jellyfin config..."
+echo "Setting ownership for Jellyfin config and cache..."
 sudo chown -R 1000:1000 ./jellyfn/config
+sudo chown -R 1000:1000 ./jellyfn/cache
 sudo chmod -R 755 ./jellyfn/config
+sudo chmod -R 755 ./jellyfn/cache
 
 # Fix other container permissions
 echo "Setting ownership for other containers..."
