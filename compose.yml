@@ -26,8 +26,6 @@ services:
     container_name: homarr
     image: ghcr.io/homarr-labs/homarr:latest
     hostname: homarr
-    environment:
-      - HOSTNAME=0.0.0.0
     restart: unless-stopped
     network_mode: 'host'
     volumes:
@@ -35,6 +33,7 @@ services:
       - ./homarr/appdata:/appdata
     environment:
       - SECRET_ENCRYPTION_KEY=563d5f14d8fc696d23a76e400dc9c3c2cfe5908f4d7a374195ed43a1721021dc
+      - HOSTNAME=0.0.0.0
     ports:
       - '7575:7575'
 
