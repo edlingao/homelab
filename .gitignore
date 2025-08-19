@@ -5,6 +5,8 @@ qbit/
 radarr/
 sonarr/
 bazarr/
+n8n_data/
+images/
 data/
 
 *.torrentrc

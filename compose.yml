@@ -21,6 +21,7 @@ services:
       - qbittorrent
       - prowlarr
       - flareSolver
+      - n8n
 
   homarr:
     container_name: homarr
@@ -176,4 +177,97 @@ services:
     volumes:
       - ./bazarr:/config
       - ./data:/data
+
+  n8n:
+    container_name: n8n
+    image: docker.n8n.io/n8nio/n8n
+    ports:
+      - "5678:5678"
+    environment:
+      # n8n Configuration
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - N8N_EDITOR_BASE_URL=https://n8n.edlingao.com
+      - DOMAIN_NAME=edlingao.com
+      - SUBDOMAIN=n8n
+      - WEBHOOK_URL=https://n8n.edlingao.com
+      
+      # Timezone
+      - GENERIC_TIMEZONE=America/Toronto
+      
+      # Email
+      - SSL_EMAIL=edlingao@edlingao.com
+      
+      # Optional: Basic Auth (uncomment to enable)
+      # - N8N_BASIC_AUTH_ACTIVE=true
+      # - N8N_BASIC_AUTH_USER=admin
+      # - N8N_BASIC_AUTH_PASSWORD=your_password_here
+      
+      # Production settings
+      - EXECUTIONS_PROCESS=main
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
+
+    volumes:
+      - ./n8n_data:/home/node/.n8n:Z
+      - ./images:/home/images:Z
+    depends_on:
+      - nginx
+    network_mode: host
+
+  mysql:
+    image: mysql:8.0
+    container_name: rpg_habit_tracker_db
+    restart: unless-stopped
+    environment:
+      # Root password (change this in production!)
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword123}
+      # Create database on startup
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-rpg_habit_tracker}
+      # Create a non-root user (recommended)
+      MYSQL_USER: ${MYSQL_USER:-habit_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-habitpass456}
+    ports:
+      # Map host port 3306 to container port 3306
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      # Mount the schema file to docker-entrypoint-initdb.d
+      # Files in this directory are executed alphabetically on first startup
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      # Persist MySQL data
+      - mysql_data:/var/lib/mysql
+      # Optional: Custom MySQL configuration
+      - ./db/mysql.conf:/etc/mysql/conf.d/custom.cnf:ro
+    networks:
+      - habit_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      timeout: 20s
+      retries: 10
+      start_period: 40s
+      interval: 30s
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  # Optional: Add Adminer for database management UI
+  adminer:
+    image: adminer:latest
+    container_name: rpg_habit_tracker_adminer
+    restart: unless-stopped
+    ports:
+      - "${ADMINER_PORT:-8080}:8080"
+    networks:
+      - habit_network
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_DESIGN: pepa-linha-dark
+
+  gotenberg:
+    image: gotenberg/gotenberg:8
+    ports:
+      - "3000:3000"
+
+
 
