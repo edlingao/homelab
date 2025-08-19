@@ -277,3 +277,6 @@ networks:
 
 volumes:
   mysql_data:
+  n8n_data:
+  files_n8n:
+
