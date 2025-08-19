@@ -266,9 +266,7 @@ services:
     container_name: gotenberg
     image: gotenberg/gotenberg:8
     ports:
-      - "3001:3001"
-    environment:
-      - GOTENBERG_PORT=3001
+      - "3002:3000"
 
 networks:
   habit_network:
