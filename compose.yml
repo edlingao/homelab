@@ -211,8 +211,6 @@ services:
     volumes:
       - ./n8n_data:/home/node/.n8n:Z
       - ./images:/home/images:Z
-    depends_on:
-      - nginx
     network_mode: host
 
   mysql:
