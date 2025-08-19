@@ -269,5 +269,9 @@ services:
     ports:
       - "3000:3000"
 
+networks:
+  habit_network:
+    driver: bridge
 
-
+volumes:
+  mysql_data:
