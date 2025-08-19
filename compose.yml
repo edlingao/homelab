@@ -208,10 +208,10 @@ services:
       # Production settings
       - EXECUTIONS_PROCESS=main
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
-
     volumes:
       - ./n8n_data:/home/node/.n8n:Z
-      - ./images:/home/images:Z
+      - ./files_n8n:/files:Z
+
     network_mode: host
 
   mysql:
