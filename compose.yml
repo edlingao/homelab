@@ -227,7 +227,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-habitpass456}
     ports:
       # Map host port 3306 to container port 3306
-      - "${MYSQL_PORT:-3306}:3306"
+      - "${MYSQL_PORT:-3307}:3306"
     volumes:
       # Mount the schema file to docker-entrypoint-initdb.d
       # Files in this directory are executed alphabetically on first startup
@@ -252,7 +252,7 @@ services:
     container_name: rpg_habit_tracker_adminer
     restart: unless-stopped
     ports:
-      - "${ADMINER_PORT:-8080}:8080"
+      - "${ADMINER_PORT:-8081}:8080"
     networks:
       - habit_network
     depends_on:
@@ -263,9 +263,12 @@ services:
       ADMINER_DESIGN: pepa-linha-dark
 
   gotenberg:
+    container_name: gotenberg
     image: gotenberg/gotenberg:8
     ports:
-      - "3000:3000"
+      - "3001:3001"
+    environment:
+      - GOTENBERG_PORT=3001
 
 networks:
   habit_network:
