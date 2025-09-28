@@ -222,6 +222,15 @@ services:
     ports:
       - "3002:3000"
 
+  hello-world:
+    container_name: hello-world
+    image: nginx:alpine
+    ports:
+      - "8888:80"
+    volumes:
+      - ./config/hello-world:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
 networks:
   habit_network:
     driver: bridge
