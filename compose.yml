@@ -225,7 +225,6 @@ services:
   hello-world:
     container_name: hello-world
     image: nginx:alpine
-    network_mode: 'host'
     ports:
       - "8888:80"
     volumes:
