@@ -50,5 +50,11 @@ ingress:
     originRequest:
       httpHostHeader: flaresolverr.localhost
 
+  # Dokploy Deployment Platform
+  - hostname: dokploy.edlingao.com
+    service: http://localhost:80
+    originRequest:
+      httpHostHeader: dokploy.localhost
+
   # Catch-all rule (must be last)
   - service: http_status:404
