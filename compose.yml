@@ -262,9 +262,8 @@ services:
     image: dokploy/dokploy:latest
     network_mode: 'host'
     restart: unless-stopped
-    ports:
-      - "3001:3000"
     environment:
+      - PORT=3001
       - DATABASE_URL=postgresql://dokploy:dokploy_secure_password_change_me@localhost:5432/dokploy
       - REDIS_HOST=localhost
       - REDIS_PORT=6379
