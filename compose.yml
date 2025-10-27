@@ -271,7 +271,9 @@ services:
       - NEXTAUTH_URL=https://dokploy.edlingao.com
       - NEXTAUTH_SECRET=change_this_to_random_string_minimum_32_characters_long
       - AUTH_URL=https://dokploy.edlingao.com
+      - AUTH_TRUST_HOST=true
       - DOKPLOY_URL=https://dokploy.edlingao.com
+      - ALLOWED_ORIGINS=http://localhost:3000,https://dokploy.edlingao.com
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/dokploy:/etc/dokploy
