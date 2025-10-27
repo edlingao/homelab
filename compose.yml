@@ -274,6 +274,8 @@ services:
       - AUTH_TRUST_HOST=true
       - DOKPLOY_URL=https://dokploy.edlingao.com
       - ALLOWED_ORIGINS=http://localhost:3000,https://dokploy.edlingao.com
+      - TRAEFIK_PORT=8080
+      - TRAEFIK_SSL_PORT=8443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/dokploy:/etc/dokploy
