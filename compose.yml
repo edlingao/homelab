@@ -268,6 +268,10 @@ services:
       - DATABASE_URL=postgresql://dokploy:dokploy_secure_password_change_me@localhost:5432/dokploy
       - REDIS_HOST=localhost
       - REDIS_PORT=6379
+      - NEXTAUTH_URL=https://dokploy.edlingao.com
+      - NEXTAUTH_SECRET=change_this_to_random_string_minimum_32_characters_long
+      - AUTH_URL=https://dokploy.edlingao.com
+      - DOKPLOY_URL=https://dokploy.edlingao.com
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/dokploy:/etc/dokploy
